@@ -7,7 +7,7 @@ const useFetch = url => {
 
   const fetchData = async () => {
     try {
-      const data = await request('get', url);
+      const data = await request({method: 'get', url, data: null});
       setData(data);
       setLoading(false);
     } catch {
@@ -26,7 +26,7 @@ const useFetch = url => {
 function Sidebar(props) {
   const { data, loading } = useFetch('/api/v2/sidebar');
   return (
-    <div>{data}</div>
+    <div></div>
   )
 }
 

@@ -15,10 +15,11 @@ function Login(props) {
 
   async function postLogin() {
       try {
-        const data = await request('post', '/api/v2/current-user/login-session', {
-          userName, password,
-        }) 
-        setAuthTokens(data);
+        const { data } = await request({method: 'post', url: 'api/v2/current-user/login-session', data: {
+          email: userName,
+          password,
+        }});
+        setAuthTokens(data.session_key);
         setLoggedIn(true);
       } catch {
         setIsError(true)  

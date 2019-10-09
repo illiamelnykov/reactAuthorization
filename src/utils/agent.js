@@ -5,18 +5,22 @@ const agent = axios.create({
 });
 
 agent.interceptors.request.use(config => {
-  const token = localStorage.get('token');
+  const token = localStorage.getItem('token');
   return {
     ...config,
     headers: { ...config.headers, 'x-api-key': `${token}` },
   }
 });
 
-function request({ method, url, data }) {
-  return agent({
-    method,
-    url,
-    data,
-  });
+async function request({ method, url, data }) {
+  try {
+    return await agent({
+      method,
+      url,
+      data,
+    });
+  } catch(e) {
+    return e;
+  }
 };
 export default request;
