@@ -8,7 +8,8 @@ agent.interceptors.request.use(config => {
   const token = localStorage.getItem('token');
   return {
     ...config,
-    headers: { ...config.headers, 'x-api-key': `${token}` },
+    headers: { ...config.headers },
+    // headers: { ...config.headers, 'x-api-key': `${token}` },
   }
 });
 
